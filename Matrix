@@ -1,0 +1,47 @@
+#include "Gombok.cpp"
+#include <time.h>
+#include <ctime>
+
+using namespace std;
+
+
+class Matrix
+{
+private:
+	Gombok gomb[10];
+public:
+	Matrix()
+	{
+		srand(time(NULL));
+		for (int i = 0; i < 10; i++){
+			gomb[i].setX(rand() % 80);
+			gomb[i].setY(rand () % 60);
+			gomb[i].setName("gomb" + to_string(i));
+		}
+	}
+
+	void move(Gombok gomb)
+	{
+		int dir = rand() % 8;
+		if (dir == 0) gomb.moveUP();
+		if (dir == 1) { gomb.moveUP(); gomb.moveRIGHT(); }
+		if (dir == 2) { gomb.moveRIGHT(); }
+		if (dir == 3) { gomb.moveRIGHT(); gomb.moveDOWN(); }
+		if (dir == 4) { gomb.moveDOWN(); }
+		if (dir == 5) { gomb.moveDOWN(); gomb.moveLEFT(); }
+		if (dir == 6) { gomb.moveLEFT(); }
+		if (dir == 7) { gomb.moveLEFT(); gomb.moveUP(); }
+	}
+
+	bool collision()
+	{
+		for (int i = 0; i < 9; i++) {
+			for (int j = i + 1; j < 10; j++) {
+				if (gomb[i].getX() == gomb[j].getX() && gomb[i].getY() == gomb[j].getY())
+					return true;
+			}
+		}
+		return false;
+	}
+
+};
