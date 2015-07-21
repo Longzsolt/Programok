@@ -1,0 +1,30 @@
+#include <string>
+
+using namespace std;
+
+class Gombok
+{
+private:
+	int x, y,xmax,ymax;
+	string Name;
+public:
+	Gombok() 
+	{ 
+		x = y = 0;
+		xmax = 70;
+		ymax = 60;
+	}
+	void setX(int x) { if (x > xmax) x = rand() % 80; this->x = x; }
+	int  getX() { return x; }
+	void setY(int y) { if (y > ymax) y = rand() % 60; this->y = y; }
+	int  getY() { return y; }
+	void setName(string Name) { this->Name = Name; }
+	string getName() { return Name; }
+
+	void moveUP()  { if (y == 0) { moveDOWN(); return; } y--; }
+	void moveDOWN() { if (y >= ymax) { moveUP(); return; }y++; }
+	void moveLEFT() { if (x == 0) { moveRIGHT(); return; } x--; }
+	void moveRIGHT() { if (x >= xmax) { moveLEFT(); return; }x++; }
+
+
+};
